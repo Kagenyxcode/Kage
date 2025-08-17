@@ -1,27 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
-    <title>Random site</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random site</title>
+  <style>
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid black;
+      font-size: 1.2em;
+      font-family: monospace;
+      animation: typing 15s steps(var(--characters), end) forwards, 
+                 blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
     img {
-        width: 300px;
-        border-radius: 150px;
-        float: left;
-        margin-right: 10px;
+      width: 175px;
+      border-radius: 85px;
+      float: left;
+      margin-right: 10px;
     }
-    
-    .username {
-        font-weight: bolder;
-    }
-    </style>
+  </style>
 </head>
 <body>
-<img src="BDAY.gif" alt="HAPPY BIRTHDAYYYY">
- <img src="BDAY2.jpg" alt="HAPPY BIRTHDAYYYY">
- <p class="username"> hello baby happy happy 17th birthday to you and enjoy your day and I'm here to say thank you for being the best girlfriend, best friend, and my safe place. Promise me baby that you won't leave me hehe, and sana mas tumagal at mas lalo nating labanan ang mga daraan na problema sa ating relationship, Iloveyousomuch and again enjoy your day. Hehe~ you're getting older but don't worry you're still my baby😜~ Iloveyouuuuuuu💕 sorry low budget, ill try to learn javascript for you hehe~
-<p> </p> 
- </p> 
+
+  <img src="BDAY.gif" alt="HAPPY BIRTHDAYYYY">
+  <img src="BDAY2.jpg" alt="HAPPY BIRTHDAYYYY">
+
+  <h1 id="message" class="typing">
+    hello baby happy happy 17th birthday to you and enjoy your day
+    and I'm here to say thank you for being the best girlfriend,
+    best friend, and my safe place. Promise me baby
+    that you won't leave me hehe,
+    and sana mas tumagal at mas lalo nating labanan ang mga daraan na problema sa ating relationship,
+    Iloveyousomuch and again enjoy your day.
+    Hehe~ you're getting older but don't worry you're still my baby😜~ Iloveyouuuuuuu💕
+  </h1>
+
+  <script>
+    // Count characters in the message
+    const message = document.getElementById("message");
+    const textLength = message.textContent.length;
+
+    // Set CSS variable for steps
+    message.style.setProperty("--characters", textLength);
+  </script>
+
 </body>
 </html>
