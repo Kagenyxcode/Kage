@@ -3,17 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random site</title>
+  <title>Birthday Card</title>
   <style>
+    body {
+      font-family: "Georgia", cursive, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #ffe6f2, #fff0f6, #ffeaf6);
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 25px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 950px;
+      border: 3px solid #ffcce6;
+      position: relative;
+    }
+
+    .card::before {
+      content: "🎀";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+    }
+
+    .images {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-right: 25px;
+    }
+
+    .images img {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 2px solid #ffb6d9;
+    }
+
     .typing {
-      display: inline-block;
       overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid black;
+      border-right: 2px solid #ff69b4;
       font-size: 1.2em;
-      font-family: monospace;
-      animation: typing 15s steps(var(--characters), end) forwards, 
-                 blink .75s step-end infinite;
+      line-height: 1.7;
+      animation: typing 12s steps(300, end) forwards, blink .75s step-end infinite;
+      white-space: normal;
+      max-width: 600px;
+      color: #333;
+      font-family: "Cursive", "Comic Sans MS", sans-serif;
     }
 
     @keyframes typing {
@@ -25,37 +75,67 @@
       50% { border-color: transparent; }
     }
 
-    img {
-      width: 175px;
-      border-radius: 85px;
-      float: left;
-      margin-right: 10px;
+    /* Cute Music Button */
+    .music-btn {
+      background: #ffb6d9;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    .music-btn:hover {
+      background: #ff80bf;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-  <img src="BDAY.gif" alt="HAPPY BIRTHDAYYYY">
-  <img src="BDAY2.jpg" alt="HAPPY BIRTHDAYYYY">
+<!-- Background Music -->
+<audio id="bg-music" loop>
+  <source src="party4u.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-  <h1 id="message" class="typing">
-    hello baby happy happy 17th birthday to you and enjoy your day
-    and I'm here to say thank you for being the best girlfriend,
-    best friend, and my safe place. Promise me baby
-    that you won't leave me hehe,
-    and sana mas tumagal at mas lalo nating labanan ang mga daraan na problema sa ating relationship,
-    Iloveyousomuch and again enjoy your day.
-    Hehe~ you're getting older but don't worry you're still my baby😜~ Iloveyouuuuuuu💕
+<!-- Music Control Button -->
+<button class="music-btn" onclick="toggleMusic()">🎶 Play Music</button>
+
+<div class="card">
+  <div class="images">
+    <img src="BDAY.gif" alt="HAPPY BIRTHDAYYYY">
+    <img src="BDAY2.jpg" alt="HAPPY BIRTHDAYYYY">
+  </div>
+
+  <h1 class="typing">
+    Hello baby, happy happy 17th birthday to you and enjoy your day. 💕
+    I'm here to say thank you for being the best girlfriend, best friend, and my safe place. 🎀
+    Promise me baby that you won't leave me hehe, and sana mas tumagal at mas lalo nating labanan ang mga daraan na problema sa ating relationship. ✨
+    Iloveyousomuch and again enjoy your day. 
+    Hehe~ you're getting older but don't worry you're still my baby 😜💗~ Iloveyouuuuuuu 💕
   </h1>
+</div>
 
-  <script>
-    // Count characters in the message
-    const message = document.getElementById("message");
-    const textLength = message.textContent.length;
+<script>
+  const music = document.getElementById("bg-music");
+  const button = document.querySelector(".music-btn");
+  let isPlaying = false;
 
-    // Set CSS variable for steps
-    message.style.setProperty("--characters", textLength);
-  </script>
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      button.textContent = "🎶 Play Music";
+    } else {
+      music.play();
+      button.textContent = "⏸️ Pause Music";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
 
 </body>
 </html>
