@@ -12,17 +12,18 @@
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #ffe6f2, #fff0f6, #ffeaf6);
     flex-direction: column;
     gap: 15px;
-    animation: bgAnimation 10s ease-in-out infinite alternate;
     overflow: hidden;
+    /* Light purple gradient background */
+    background: linear-gradient(135deg, #e6d0f5, #d9b3ff, #d1a3ff);
+    animation: bgAnimation 10s ease-in-out infinite alternate;
   }
 
   @keyframes bgAnimation {
-    0% { background: #ffe6f2; }
-    50% { background: #fff0f6; }
-    100% { background: #ffeaf6; }
+    0% { background: #e6d0f5; }
+    50% { background: #d9b3ff; }
+    100% { background: #d1a3ff; }
   }
 
   .card {
