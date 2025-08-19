@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Me When You're Feeling Sad 💜</title>
+  <style>
+    body {
+      font-family: "Georgia", cursive, sans-serif;
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+      transition: background 1s ease-in-out;
+    }
+    h1 {
+      color: #6a1b9a;
+      text-shadow: 1px 1px 3px #fff;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background-color: #9c27b0;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background-color: #6a1b9a;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 22px;
+      display: none;
+      animation: fadeIn 1.5s ease-in-out;
+      transition: color 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Floating effects */
+    .float {
+      position: absolute;
+      animation: floatUp 4s ease-in forwards;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+
+    /* Big surprise style */
+    .big-surprise {
+      font-size: 28px;
+      font-weight: bold;
+      color: #8e24aa;
+      text-shadow: 2px 2px 5px white;
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ba68c8, 0 0 10px #ce93d8; }
+      to { text-shadow: 0 0 20px #e1bee7, 0 0 30px #f3e5f5; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click Me When You're Feeling Sad 💜</h1>
+  <button onclick="showMessage()">Click Me 💜</button>
+  <p id="message"></p>
+
+  <script>
+    const allMessages = [
+      "You’re the best thing that ever happened to me 💕",
+      "I love you more than words can say 💜",
+      "Forever and always, it’s you 💖",
+      "You’re my favorite person in the whole universe 🌍✨",
+      "No matter what happens, I’ll always love you 😘",
+      "My heart is happiest when I think of you 💞",
+      "It’s okay to have bad days 🌧️, just remember the sun always comes back ☀️",
+      "You are stronger than you think 💪",
+      "Breathe in courage, breathe out fear 🌬️💜",
+      "Even the darkest night will end, and the sun will rise 🌅",
+      "Smile, love — it looks beautiful on you 😊",
+      "Whenever you feel alone, remember I’m always with you 🤗",
+      "You’re capable of amazing things ✨",
+      "One small positive thought can change your whole day 🌸"
+    ];
+
+    let unusedMessages = [...allMessages];
+    let clickCount = 0;
+
+    const gradients = [
+      "linear-gradient(135deg, #f3e5f5, #e1bee7)",
+      "linear-gradient(135deg, #d1c4e9, #b39ddb)",
+      "linear-gradient(135deg, #e0bbf3, #dba2ef)",
+      "linear-gradient(135deg, #cbb6e4, #a68edb)",
+      "linear-gradient(135deg, #f8bbd0, #e1bee7)",
+      "linear-gradient(135deg, #d7c1f0, #cba6f7)",
+      "linear-gradient(135deg, #f3d1f4, #e1bee7)",
+      "linear-gradient(135deg, #e0c3fc, #8ec5fc)"
+    ];
+    let gradientIndex = 0;
+
+    const textColors = [
+      "#6a1b9a","#8e24aa","#ab47bc","#7b1fa2",
+      "#9c27b0","#ba68c8","#ce93d8","#b39ddb"
+    ];
+    let textColorIndex = 0;
+
+    function showMessage() {
+      clickCount++;
+
+      const messageElement = document.getElementById("message");
+
+      // Every 10 clicks -> big surprise
+      if (clickCount % 10 === 0) {
+        messageElement.innerText = "💜 BIG SURPRISE: I Love You More Than Everything 💜";
+        messageElement.classList.add("big-surprise");
+        messageElement.style.display = "block";
+      } else {
+        if (unusedMessages.length === 0) {
+          unusedMessages = [...allMessages];
+        }
+
+        const randomIndex = Math.floor(Math.random() * unusedMessages.length);
+        const message = unusedMessages.splice(randomIndex, 1)[0];
+
+        messageElement.innerText = message;
+        messageElement.classList.remove("big-surprise");
+        messageElement.style.display = "block";
+      }
+
+      document.body.style.background = gradients[gradientIndex];
+      gradientIndex = (gradientIndex + 1) % gradients.length;
+
+      messageElement.style.color = textColors[textColorIndex];
+      textColorIndex = (textColorIndex + 1) % textColors.length;
+
+      createFloatingEffects();
+    }
+
+    function createFloatingEffects() {
+      for (let i = 0; i < 6; i++) {
+        const floaty = document.createElement("div");
+        floaty.classList.add("float");
+        floaty.innerText = Math.random() > 0.5 ? "💜" : "✨";
+        floaty.style.left = Math.random() * window.innerWidth + "px";
+        floaty.style.bottom = "0px";
+        floaty.style.fontSize = (20 + Math.random() * 20) + "px";
+        document.body.appendChild(floaty);
+        setTimeout(() => floaty.remove(), 4000);
+      }
+    }
+  </script>
+
+</body>
+</html>
